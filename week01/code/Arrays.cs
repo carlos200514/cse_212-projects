@@ -1,3 +1,4 @@
+// Felipe Rojas
 public static class Arrays
 {
     /// <summary>
@@ -8,12 +9,25 @@ public static class Arrays
     /// <returns>array of doubles that are the multiples of the supplied number</returns>
     public static double[] MultiplesOf(double number, int length)
     {
-        // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // PLAN
+        // Step 1: Create a new array of type double with a size equal to the value of length.
+        //         This array will hold the multiples that we calculate.
+        // Step 2: Use a for loop that starts at index 0 and runs until index length - 1.
+        //         Each loop iteration will calculate one multiple.
+        // Step 3: For each position in the array, calculate the multiple of the starting number.
+        //         The formula will be: number * (index + 1)
+        //         We add 1 to the index because the first multiple should be the number itself.
+        // Step 4: Store the calculated value into the array at the current index.
+        // Step 5: After the loop finishes filling the array, return the array.
 
-        return []; // replace this return statement with your own
+        double[] result = new double[length];
+
+        for (int i = 0; i < length; i++)
+        {
+            result[i] = number * (i + 1);
+        }
+
+        return result;
     }
 
     /// <summary>
@@ -25,9 +39,26 @@ public static class Arrays
     /// </summary>
     public static void RotateListRight(List<int> data, int amount)
     {
-        // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // PLAN
+        // Step 1: Determine the index where the list should be split.
+        //         This index will be data.Count - amount.
+        //         Everything after this index should move to the front of the list.
+        // Step 2: Create a temporary list to store the elements that will move to the front.
+        //         Use GetRange() to copy the elements starting at the split index
+        //         and take 'amount' elements.
+        // Step 3: Remove those elements from their original location in the list
+        //         using RemoveRange().
+        // Step 4: Insert the saved elements at the beginning of the list
+        //         using InsertRange(0, tempList).
+        // Step 5: The list is now rotated to the right and no return value is needed
+        //         because the original list has been modified.
+
+        int splitIndex = data.Count - amount;
+
+        List<int> temp = data.GetRange(splitIndex, amount);
+
+        data.RemoveRange(splitIndex, amount);
+
+        data.InsertRange(0, temp);
     }
 }
